@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import verifyToken from '../middlewares/verifyToken.js';
 import validateJOI from '../middlewares/validateJOI.js';
+import verifyToken from '../middlewares/verifyToken.js';
 import { me, signin, signup } from '../controllers/auth.js';
 import { userSchema, siginSchema } from '../joi/schemas.js';
 
