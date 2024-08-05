@@ -9,8 +9,8 @@ export const getAllPosts = asyncHandler(async (req, res, next) => {
 });
 
 export const createPost = asyncHandler(async (req, res, next) => {
-  const { body } = req;
-  const newPost = await (await Post.create({ ...body })).populate('author');
+  const { body, userId } = req;
+  const newPost = await (await Post.create({ ...body, author: userId })).populate('author');
   res.status(201).json(newPost);
 });
 
