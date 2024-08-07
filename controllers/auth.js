@@ -28,6 +28,17 @@ export const signin = asyncHandler(async (req, res) => {
   res.status(201).json({ success: 'welcome back' });
 });
 
+export const signOut = asyncHandler(async (req, res) => {
+  const isProduction = process.env.NODE_ENV === 'production';
+  const cookieOptions = {
+    httpOnly: true,
+    sameSite: isProduction ? 'None' : 'Lax',
+    secure: isProduction
+  };
+  res.clearCookie('token', cookieOptions);
+  res.status(200).json({ success: 'goodbye' });
+});
+
 export const signup = asyncHandler(async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   const alreayExists = await User.findOne({ email });
